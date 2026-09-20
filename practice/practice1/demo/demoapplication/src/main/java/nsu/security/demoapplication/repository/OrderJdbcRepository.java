@@ -1,6 +1,7 @@
 package nsu.security.demoapplication.repository;
 
 import nsu.security.demoapplication.model.Order;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
@@ -15,9 +16,14 @@ import java.util.List;
 @Repository
 public class OrderJdbcRepository {
 
-    private static final String URL = "jdbc:postgresql://db:5432/demodb";
-    private static final String USER = "demo";
-    private static final String PASSWORD = "demo";
+    @Value("${spring.datasource.url}")
+    private String URL;
+
+    @Value("${spring.datasource.username}")
+    private String USER;
+
+    @Value("${spring.datasource.password}")
+    private String PASSWORD;
 
     public List<Order> getOrders(String id) {
 
